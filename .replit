@@ -1,0 +1,4 @@
+language = "javascript"
+run = ""
+
+console.log("hello");
