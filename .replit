@@ -1,49 +1,37 @@
 language = "javascript"
 run = ""
 
-class MyArray {
-  constructor(){
-    this.length = 0;
-    this.data = {};
+// Naive solution
+function reverse(str){
+  let retVal= str.split("");
+  let temp; 
+  for(let i=0; i< retVal.length/2; i++){
+    temp = retVal[i];
+    retVal[i] = retVal[retVal.length -1 -i]
+    retVal[retVal.length -1 -i] = temp;
   }
 
-  get(index){  // O(1)
-    return this.data[index];
-  }
-
-  push(value){ // O(1)
-    this.data[this.length] = value;
-    this.length++;
-    return this.length;
-  }
-
-   pop(){ // O(1)
-    const targetItem = this.data[this.length -1 ];
-    delete this.data[this.length -1 ];
-    this.length--;
-    return targetItem;
-  }
-
-  delete(index){ // O(n)
-    const item = this.data[index];
-    this.shiftItems(index);
-  }
-
-  shiftItems(index){ // O(n)
-    for(let i=index; i<this.length-1; i++ ){
-      this.data[i] = this.data[i+1] 
-    }
-    delete this.data[this.length -1];
-    this.length--;
-  }
+  return retVal.join("");
 }
+console.log(reverse("Hello My Name Is Yousef"));
 
-const newArray = new MyArray();
+// Better solution 
+function reverseBetter(str){
+  const backwords = []; 
+  const length = str.length-1;
+  for(let i=length; i>=0; i--){
+   backwords.push(str[i]);
+  }
+  return backwords.join('');
+}
+console.log(reverseBetter("Hello My Name Is Yousef"));
 
-newArray.push('hi');
-newArray.push('you');
-newArray.push('!');
-//newArray.pop();
-newArray.delete(1);
+// Cleaner solution 
+function reverseBuildIn(str){
+  return str.split('').reverse().join('');
+}
+console.log(reverseBuildIn("Hello My Name Is Yousef"));
 
-console.log(newArray);
+// Modern solution
+const reverseES6 = str => [...str].reverse().join('');
+console.log(reverseES6("Hello My Name Is Yousef"));
