@@ -1,8 +1,8 @@
 language = "javascript"
-run = ""	run = ""
+run = ""
 
 
-//Naive solution	// Naive solution
+//Naive solution
 const hasPairWithSum = (array, sum) => {
   function reverse(str) {
     for (let i = 0; i < array.length - 1; i++) {
