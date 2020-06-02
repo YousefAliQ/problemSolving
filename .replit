@@ -2,36 +2,30 @@ language = "javascript"
 run = ""
 
 // Naive solution
-function reverse(str){
-  let retVal= str.split("");
-  let temp; 
-  for(let i=0; i< retVal.length/2; i++){
-    temp = retVal[i];
-    retVal[i] = retVal[retVal.length -1 -i]
-    retVal[retVal.length -1 -i] = temp;
+function mergeSortedArrays(array1, array2){
+  // [TODO] check for validation and empty arrays
+  // [TODO] clean the code 
+  if (array1.length == 0 ) return array2;
+  if (array2.length == 0 ) return array1;
+
+  const mergedArray=[];
+  let array1Item = array1[0];
+  let array2Item = array2[0];
+  let i = 1;
+  let j = 1;
+
+  while( array1Item || array2Item ){
+    if ( !array2Item || array1Item < array2Item ) {
+      mergedArray.push(array1Item);
+      array1Item = array1[i];
+      i++;
+    } else {
+      mergedArray.push(array2Item);
+      array2Item = array2[j];
+      j++;
+    }
   }
-
-  return retVal.join("");
+  return mergedArray;
 }
-console.log(reverse("Hello My Name Is Yousef"));
 
-// Better solution 
-function reverseBetter(str){
-  const backwords = []; 
-  const length = str.length-1;
-  for(let i=length; i>=0; i--){
-   backwords.push(str[i]);
-  }
-  return backwords.join('');
-}
-console.log(reverseBetter("Hello My Name Is Yousef"));
-
-// Cleaner solution 
-function reverseBuildIn(str){
-  return str.split('').reverse().join('');
-}
-console.log(reverseBuildIn("Hello My Name Is Yousef"));
-
-// Modern solution
-const reverseES6 = str => [...str].reverse().join('');
-console.log(reverseES6("Hello My Name Is Yousef"));
+mergeSortedArrays([1,3,3],[2,5,6,9]);
