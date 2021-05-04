@@ -1,0 +1,57 @@
+public class MoorsVotingProblem {
+    public static void main(String args[]) {
+        
+      //int arr1[] = new int[]{2,3,4,5,6};    
+      int arr[] = new int[]{2,3,4,3,3};
+      
+      int major = findMajority(arr);
+      
+      if (major != 0)
+        System.out.println(major);
+      else 
+        System.out.println("No Majority Element");
+      
+      
+    }
+    
+    private static int findMajority(int[] arr){
+        
+        int element = arr[0];
+        int count =1;
+        
+        for(int i=1; i<arr.length; i++){
+            
+            if(arr[i] == element){
+                count = count +1;
+            }
+            else{
+                count = count -1; 
+                
+                if (count == 0){
+                    element = arr[i];
+                    count =1; 
+                }
+                
+            }
+            
+        }
+        
+        int majorityElement = verifyMajority(arr, element);
+        return majorityElement;
+    }
+    
+    private static int verifyMajority(int[] arr, int cand){
+        int n = arr.length/2;
+        int count =0;
+        
+        for (int i=0; i< arr.length; i++){
+            if (arr[i] == cand)
+                count++;
+        }
+        
+        if ( count > n ) 
+        return cand;
+        else 
+        return 0;
+    }
+}
